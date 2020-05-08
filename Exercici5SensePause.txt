@@ -1,0 +1,163 @@
+#include <iostream>
+#include "BaseEnemy1.h"
+#include "EnrageEnemy1.h"
+#include "BasePlayer1.h"
+using namespace std;
+
+
+//Bones Alex, t'adjunto el mateix exercici 5, pero sense el Sytem("pause") per si no vlos haver de clicar cada cop per continuar
+
+
+int main()
+{
+
+    int opcio;
+    float recuperar;
+    bool run = false;
+    BasePlayer1 pl(15.0f, 3.0f);
+    BasePlayer1* punterPlayer = &pl;
+   
+    EnrageEnemy1 enemy3(10.0f, 2.0f);
+    EnrageEnemy1 boss(15.0f, 4.5f);
+    EnrageEnemy1* punterEnemy = &enemy3;
+
+    float impactrueno = enemy3.getAttack();
+
+    enemy3.getLife();
+
+    cout << "Despertes en una habitacio amb marques de sang  per les parets. Veus dos portes, en una hi posa Llibertat i en l'altre Mort" << endl;
+    system("pause");
+    std::cout << "Quina porta decideixes obrir? Libertat = 1 / Mort = 2";
+    std::cin >> opcio;
+    while (opcio != 300) {
+        if (opcio == 2) {
+            cout << "En el moment que entres per la porta et sorpren el que veus: " << endl;
+            cout << "Sobre de la taula hi ha una AK-47, una destral bastant afilada, uns llumins i una Nintendo DS. " << endl;
+            cout << "Amb una nota que hi posa: Agafa el que mes et convingui per sobreviure. " << endl;
+            cout << "Que decideixes agafar? AK-47 = 100 / Destral = 200 / Llumins = 300 / DS = 400";
+            cin >> opcio;
+            switch (opcio) {
+            case 100:
+                cout << "Agafes la AK-47 i amb tota la seguretat del mon vas cap a la unica sortida possible, un pasadis completament a les fosques. " << endl;
+                cout << "Seguiexes caminant. " << endl;
+                cout << "Notes com algu t'observa. " << endl;
+                cout << "Seguiexes caminant. " << endl;
+                cout << "Seguiexes caminant. " << endl;
+                cout << "Notes l'ale d'algu per darrera, i et disposes a girar-te per disparar, pero instantaneament t'han atrevasat el pit amb una llança. " << endl;
+                cout << "---------------------THE END-------------------------" << endl;
+                system("pause");
+                exit(-1);
+                break;
+            case 200:
+                cout << "Agafes la destral i et sent com un viking poderos; Vas cap a la unica sortida possible, un pasadis completament a les fosques. " << endl;
+                cout << "Seguiexes caminant. " << endl;
+                cout << "Notes com algu t'observa. " << endl;
+                cout << "Seguiexes caminant. " << endl;
+                cout << "Seguiexes caminant. " << endl;
+                cout << "Notes l'ale d'algu per darrera, i et disposes a girar-te per rebentar a destrelades a qui sigui, pero  instantaneament t'han atrevasat el pit amb una llança. " << endl;
+                cout << "---------------------THE END-------------------------" << endl;
+                system("pause");
+                exit(-1);
+                break;
+            case 400:
+                cout << "Agafes la Nintendo DS i et fiques a jugar al Super mario 64." << endl;
+                cout << "Seguiexes jugant. " << endl;
+                cout << "T'obres una redbull per disfrutar de la experiencia. " << endl;
+                cout << "Seguiexes jugant. " << endl;
+                cout << "Seguiexes jugant. " << endl;
+                cout << "Estas a punt de lluitar contra en Bowser, quan t'adones que del passadis acaba de sortir una mena de indigena amb una llança. " << endl;
+                cout << "Li tires la Nintendo DS, la cual esquiva amb relativa facilitat. " << endl;
+                cout << "Vas corrents agafar alguna arma, pero l'indigena es mes rapid i ja t'ha empalat. " << endl;
+                cout << "---------------------THE END-------------------------" << endl;
+                system("pause");
+                exit(-1);
+                break;
+
+            case 300:
+                break;
+
+            default:
+                opcio = 2;
+                break;
+            }
+            
+
+
+        }
+        else if (opcio == 1) {
+
+            cout << "Obres la porta de la Libertat amb cautela i descobreixes que has sortit al exterior." << endl;
+            cout << "No et vols ni imaginar que hagues passat si haguessis anat a la porta de la Mort, pero ets lliure i ja no et preocupa" << endl;
+            cout << "---------------------THE END-------------------------" << endl;
+            system("pause");
+            exit(-1);
+        }
+        else {
+            cout << "Quina porta decideixes obrir? Libertat = 1 / Mort = 2";
+            cin >> opcio;
+        }
+    }
+    cout << "Agafes els llumins i et dirigeixes cap al passadis a les fosques." << endl;
+    cout << "Et fixes que a la paret hi ha una torxa apagada." << endl;
+    cout << "L'encens amb els llumins i el passadis ja no es tan tetric." << endl;
+    cout << "Seguiexes caminant i notes com algu t'observa. " << endl;
+    cout << "I desde davant teu distingueixes un indigena que es disposa a atacar-te. " << endl;
+    run = enemy3.combat(punterPlayer,pl,enemy3);
+    if (run) {
+        enemy3.ReciveHealth(10.0f);
+        cout << "Despres de haber passat aquest mal trago amb el indigena, pensaves que ja havia acabat tot " << endl;
+        cout << "Quina es la teva sorpresa quan et gires i en veus un altre disposat a atacar " << endl;
+    }
+    else {
+        system("pause");
+        exit(-1);
+    }
+    run = enemy3.combat(punterPlayer, pl, enemy3);
+    if (run) {       
+        cout << "Ja no vols tornar a mirar enrere, i surts corrents cap endevant " << endl;
+        cout << "Fins que et trobes en una bifurcacio. " << endl;
+        cout << "On vols anar, cap a la dreta o cap a la esquerra? Dreta =1 / Esquerra =2 " << endl;
+        cin >> opcio;
+        recuperar = 15.0f - pl.getLife();
+        pl.ReciveHealth(recuperar);
+    }
+    else {
+        system("pause");
+        exit(-1);
+    }
+    cout << "Just en el moment  que gires en el passadis, notes un crit des de on has vingut. " << endl;
+    cout << "T'esglaia la sang i començes a correr mes rapid que l'Usain Bolt." << endl;
+    cout << "Pero saps que encara esta molt lluny." << endl;
+    cout << "Passats un segons, distinguiexes un donetes tirats al terra." << endl;
+    cout << "Esats famelic, i els menjes mentres corres per no perdre temps." << endl;
+    cout << "Per poc t'ennuegas, pero no." << endl;
+    cout << "Has recuperat tota la vida." << endl;
+    cout << "Vida del restant del player: " << pl.getLife() << endl;
+    cout << "Començes a veure una llum al final del tunel." << endl;
+    cout << "Ja penses en la llibertat." << endl;
+    cout << "Pero una feltxa et passa a 1cm de la cara." << endl;
+    cout << "Et gires i divises un altre indigena, pero mes gran i mes fort." << endl;
+    cout << "Saps que si vols arribar a el que hi hagi despres de la llum, hauras de lluitar" << endl;
+    cout << "I aixi ho fas, et disposes a lluitar" << endl;
+    run = enemy3.combat(punterPlayer, pl, boss);
+    if (run) {
+        cout << "Et sents orgullos de haber sobreviscut als atacs de tres indigenas." << endl;
+        cout << "Promets que si surts viu d'aquesta seras millor persona." << endl;
+        cout << "Atraveses la llum, et costa distingiramb claretat el que veus." << endl;
+        cout << "Quan t'has accostumat a la llum diurna, reconeixes on ets. Estas a la entrada del bosc de la teva ciutat" << endl;
+        cout << "No vols saber res mes de el que ha passat i t'envas cagant llets cap a la teva casa." << endl;
+        cout << "---------------------THE END-------------------------" << endl;
+        system("pause");
+        exit(-1);
+
+    }
+    else {
+        system("pause");
+        exit(-1);
+    }
+
+
+
+    system("pause");
+
+}
