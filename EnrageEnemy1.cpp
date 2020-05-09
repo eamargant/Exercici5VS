@@ -33,10 +33,13 @@ float EnrageEnemy1::getAttack() {
 void EnrageEnemy1::ReciveHealth(float health) {
 	life += health;
 }
+//metode que retorna true si es conseguiex escapar de l'enemic o si es derrota; retorna false si el player es queda sense vida
 bool EnrageEnemy1::combat(BasePlayer1* punter, BasePlayer1 player, EnrageEnemy1 punterE) {
 	int opcio = 0;
 	bool critic = false;
 	bool run = false;
+	//while per controlar que nomes es pugi donar pe racabat el combat si l'enemic o el player no tenen mes HP.
+	//o si s'aconseguiex escapar.
 	while (player.getLife() > 1 && punterE.getLife() > 0) {
 		cout << "Vida del restant del player: " << player.getLife() << endl;
 		cout << "Vida del restant enemy: " << punterE.getLife() << endl;
@@ -92,7 +95,8 @@ bool EnrageEnemy1::combat(BasePlayer1* punter, BasePlayer1 player, EnrageEnemy1 
 		return true;
 	}
 }
-
+//metode que retorna un boolea true si el numero random generat en la variable v1 es mes petit que 3 i false si es mes gran
+// en cas de retornar true, serà 1HKO al enemic.(one hit K.O)
 bool EnrageEnemy1::critic() {
 	int v1 = rand() % 10;
 
