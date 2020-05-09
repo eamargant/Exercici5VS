@@ -13,7 +13,7 @@ using namespace std;
 
 int main()
 {
-
+    //declarem totes les variables necessaries
     int opcio;
     float recuperar;
     bool run = false;
@@ -24,10 +24,10 @@ int main()
     EnrageEnemy1 boss(15.0f, 4.5f);
     EnrageEnemy1* punterEnemy = &enemy3;
 
-    float impactrueno = enemy3.getAttack();
 
-    enemy3.getLife();
-
+    //comença la aventura de presa de desicions, primer fiquem un bucle per controlar que fins que no es fiqui la opcio correcte no es pugi sortir
+    // a part dins del bucle i tenim un if per que no es pugi ficar un numero que no sigui una opcio, en el cas de ficarlo es repeteix la pregunta
+    //i a dins de un if, un switch case per les opcions erronies
     cout << "Despertes en una habitacio amb marques de sang  per les parets. Veus dos portes, en una hi posa Llibertat i en l'altre Mort." << endl;
     std::cout << "Quina porta decideixes obrir? Libertat = 1 / Mort = 2";
     std::cin >> opcio;
@@ -119,6 +119,7 @@ int main()
             cin >> opcio;
         }
     }
+    //continua la aventura, i començen els combats
     cout << "Agafes els llumins i et dirigeixes cap al passadis a les fosques." << endl;
     system("pause");
     cout << "Et fixes que a la paret hi ha una torxa apagada." << endl;
@@ -130,6 +131,8 @@ int main()
     cout << "I desde davant teu distingueixes un indigena que es disposa a atacar-te. " << endl;
     system("pause");
     run = enemy3.combat(punterPlayer, pl, enemy3);
+    //un if i un else per saber si hem perdut tota la vida o hem derrotat al enemic.
+    //en cas de haver perdut tota la vida, s'acaba el joc, i el missatge de fi de joc esta incluit en el metode, per estalviar linies de codi
     if (run) {
         enemy3.ReciveHealth(10.0f);
         system("pause");
@@ -141,6 +144,7 @@ int main()
         system("pause");
         exit(-1);
     }
+    //Exactament igual que l'anterior
     run = enemy3.combat(punterPlayer, pl, enemy3);
     if (run) {
         system("pause");
@@ -186,6 +190,7 @@ int main()
     system("pause");
     cout << "I aixi ho fas, et disposes a lluitar" << endl;
     run = enemy3.combat(punterPlayer, pl, boss);
+    //igual que l'anterior, pero l'enemic es el boss, mes vida i doble de attack
     if (run) {
         system("pause");
         cout << "Et sents orgullos de haber sobreviscut als atacs de tres indigenas." << endl;
